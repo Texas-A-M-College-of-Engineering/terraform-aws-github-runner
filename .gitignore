@@ -20,3 +20,5 @@ example/*.secrets*.tfvars
 .vscode
 
 **/coverage/*
+
+*secrets*.auto.tfvars

@@ -1,6 +1,8 @@
 locals {
-  environment = "default"
-  aws_region  = "eu-west-1"
+  environment = "test"
+  #aws_region  = "us-east-2"
+  vpc_id = "vpc-01bc2d2d3ed5f3180"
+  private_subnets = ["subnet-06cea91a196c830e9"]
 }
 
 resource "random_password" "random" {
@@ -10,13 +12,16 @@ resource "random_password" "random" {
 module "runners" {
   source = "../../"
 
-  aws_region = local.aws_region
-  vpc_id     = module.vpc.vpc_id
-  subnet_ids = module.vpc.private_subnets
+  #aws_region = local.aws_region
+  aws_region = var.aws_region
+  #vpc_id     = module.vpc.vpc_id
+  vpc_id     = local.vpc_id
+  #subnet_ids = module.vpc.private_subnets
+  subnet_ids = local.private_subnets
 
   environment = local.environment
   tags = {
-    Project = "ProjectX"
+    Project = "terraform-aws-github-runner-test"
   }
 
   github_app = {
