@@ -1,0 +1,5 @@
+[Unit]
+Description=Update, sleep, and Reboot to keep github ghost runner from being removed
+Requires=multi-user.target
+After=multi-user.target
+AllowIsolate=yes

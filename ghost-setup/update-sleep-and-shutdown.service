@@ -1,0 +1,10 @@
+[Unit]
+Description=Update, sleep, and shutdown to keep the github ghost runner registered
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/opt/ghost/bin/update-sleep-and-shutdown.sh
+
+[Install]
+WantedBy=update-and-shutdown.target

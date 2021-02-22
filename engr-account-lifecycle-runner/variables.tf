@@ -340,3 +340,14 @@ variable "runner_additional_security_group_ids" {
   type        = list(string)
   default     = []
 }
+
+variable "ghost_ec2_role" {
+  description = "Name of the EC2 role that will be used to launch the ghost runner"
+  type        = string
+}
+
+variable "ghost_key_pair" {
+  description = "Key pair name for connecting via SSH (optional)"
+  type        = string
+  default     = null
+}

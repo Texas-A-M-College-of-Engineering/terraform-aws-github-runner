@@ -17,7 +17,7 @@ environment = "engr-lc-github-runner"
 
 enable_organization_runners = false
 
-minimum_running_time_in_minutes = "60"
+minimum_running_time_in_minutes = "90"
 
 webhook_lambda_zip = "../examples/default/lambdas-download/webhook.zip"
 runners_lambda_zip = "../examples/default/lambdas-download/runners.zip"
@@ -28,3 +28,7 @@ runners_maximum_count = 1
 runner_extra_labels = "aws-runner-engr-lc-shared-services"
 
 enable_ssm_on_runners = true
+
+ghost_ec2_role = "AmazonSSMManagedInstanceCoreRole"
+
+ghost_key_pair = "aip-engineering-shared-services-test-blake"

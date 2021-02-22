@@ -22,6 +22,7 @@ This [Terraform](https://www.terraform.io/) module creates the required infrastr
 - [Inputs](#inputs)
 - [Outputs](#outputs)
 - [Contribution](#contribution)
+- [Blake's Ghost Runner Addition](#blakes-ghost-runner-addition)
 - [Philips Forest](#philips-forest)
 
 ## Motivation
@@ -372,6 +373,22 @@ No requirements.
 ## Contribution
 
 We welcome contribution, please checkout the [contribution guide](CONTRIBUTING.md). Be-aware we use [pre commit hooks](https://pre-commit.com/) to update the docs.
+
+
+## Blake's Ghost Runner Addition
+I've added the concept of a "ghost runner". This is a t2.micro EC2 instance that keeps itself registered and occasionally
+boots to enure that it stays registered to GitHub. This is an alternative to using your desktop to keep an offline client
+registered. It is necessary to ensure that GitHub actions will cause a new EC2 runner to scale up, since a runner must
+exist for this to work. Offline runners are removed after 30 days, so this "ghost runner" boots once a week, sleeps for 5 minutes, 
+updates itself, and then shuts back down.
+
+An example of how to run this is found in the 'engr-account-lifecycle-runner' directory. 
+
+The ghost-runner.tf file needs to be created, which uses the ghost-runner module.
+
+After the usual Terraform project set up and run, you 
+just run the script 'run_last_deploy_ghost_runner.sh'. Technically, the instance is launched via Terraform during the initial
+set up, but this script bootstraps the instance as an actions runner and sets up the update, sleep, and shutdown systemd target.
 
 ## Philips Forest
 
